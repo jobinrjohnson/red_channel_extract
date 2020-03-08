@@ -9,9 +9,9 @@ void Menu::printMenu() {
 
     int i, selection;
 
-    std::cout << std::endl;
+    std::cout << std::endl << std::endl;
     for (i = 0; i < NO_MENU_ITEMS; i++) {
-        std::cout << this->menuItems[i] << std::endl;
+        std::cout << i + 1 << " " << this->menuItems[i] << std::endl;
     }
 
 }

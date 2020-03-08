@@ -15,8 +15,8 @@ std::string VideoProcessor::getFileName() {
     struct timeval tp;
     gettimeofday(&tp, NULL);
     long int ms = tp.tv_sec * 1000 + tp.tv_usec / 1000;
-    char fileName[40];
-    sprintf(fileName, "video_%ld.avi", ms);\
+    char fileName[60];
+    sprintf(fileName, "recorded/video_%ld.avi", ms);\
     return fileName;
 }
 
@@ -32,9 +32,12 @@ void VideoProcessor::capture() {
     Size size = Size((int) input.get(CV_CAP_PROP_FRAME_WIDTH),
                      (int) input.get(CV_CAP_PROP_FRAME_HEIGHT));
 
+    std::string fileName = this->getFileName();
+
+    std::cout << std::endl << "Saving file to " << fileName << std::endl;
 
     cv::VideoWriter videoOutput(
-            this->getFileName(),
+            fileName,
             extension,
             input.get(CV_CAP_PROP_FPS),
             size

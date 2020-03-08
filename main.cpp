@@ -1,5 +1,6 @@
 #include <iostream>
 #include <opencv2/opencv.hpp>
+#include <filesystem>
 
 #include "include/Auth.hpp"
 #include "include/Menu.hpp"
@@ -10,12 +11,12 @@ using namespace std;
 int main() {
 
     // Authenticate User
-//    Auth auth;
-//    auth.setAuthProvider(AUTH_PROVIDER_SIMPLE);
-//    if(!auth.auth()){
-//        cout<< "Authentication Error" << endl;
-//        return  -1;
-//    }
+    Auth auth;
+    auth.setAuthProvider(AUTH_PROVIDER_SIMPLE);
+    if (!auth.auth()) {
+        cout << "Authentication Error" << endl;
+        return -1;
+    }
 
     Menu menu;
     VideoProcessor videoProcessor;
@@ -26,10 +27,15 @@ int main() {
 
         switch (actionId) {
             case 1:
+                cout << "\nCapturing Video";
                 videoProcessor.setCaptureDevice(VIDEO_SOURCE_DEFAULT);
                 videoProcessor.capture();
+                cout << "\ncapture complete";
                 break;
             case 2:
+                cout << "\nAll recordings\n";
+                for (const auto &entry : std::filesystem::directory_iterator("recorded"))
+                    std::cout << "* " << entry.path().string() << std::endl;
                 break;
             case 3:
                 std::cout << std::endl << "Logged out." << std::endl;

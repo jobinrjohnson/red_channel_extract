@@ -9,6 +9,7 @@
 
 #include <opencv2/opencv.hpp>
 #include <opencv2/videoio/legacy/constants_c.h>
+#include <opencv2/core/utils/filesystem.hpp>
 
 class VideoProcessor {
 
@@ -17,6 +18,11 @@ protected:
     int duration = 10;
 
 public:
+
+    VideoProcessor() {
+        cv::utils::fs::createDirectory("recorded");
+    }
+
     void capture();
 
     void setCaptureDevice(int device);
