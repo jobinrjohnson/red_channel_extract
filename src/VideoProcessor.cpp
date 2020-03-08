@@ -3,7 +3,7 @@
 //
 
 #include <sys/time.h>
-#include "include/VideoProcessor.hpp"
+#include "../include/VideoProcessor.hpp"
 
 using namespace cv;
 
@@ -16,7 +16,7 @@ std::string VideoProcessor::getFileName() {
     gettimeofday(&tp, NULL);
     long int ms = tp.tv_sec * 1000 + tp.tv_usec / 1000;
     char fileName[60];
-    sprintf(fileName, "recorded/video_%ld.avi", ms);\
+    sprintf(fileName, "recorded/video_%ld.mp4", ms);\
     return fileName;
 }
 
@@ -38,9 +38,10 @@ void VideoProcessor::capture() {
 
     cv::VideoWriter videoOutput(
             fileName,
-            extension,
+            VideoWriter::fourcc('m', 'p', '4', 'v'),
             input.get(CV_CAP_PROP_FPS),
-            size
+            size,
+            false
     );
 
     long int i = 0;

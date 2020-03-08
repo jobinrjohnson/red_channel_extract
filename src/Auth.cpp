@@ -4,7 +4,7 @@
 
 #include <string>
 #include <iostream>
-#include "include/Auth.hpp"
+#include "../include/Auth.hpp"
 
 bool Auth::auth() {
     std::string userName;
@@ -37,14 +37,16 @@ void Auth::setNumberOfAttempts(int number){
     this->numberOfAttempts = number;
 }
 
-int Auth::setAuthProvider(int authProvider){
+int Auth::setAuthProvider(int authProvider) {
 
-    switch (authProvider){
+    switch (authProvider) {
         case AUTH_PROVIDER_SIMPLE:
             break;
         default:
-            throw std::invalid_argument( "Invalid auth provider" );
+            throw std::invalid_argument("Invalid auth provider");
     }
 
     this->authProvider = authProvider;
+
+    return authProvider;
 }

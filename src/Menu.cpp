@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "include/Menu.hpp"
+#include "../include/Menu.hpp"
 
 void Menu::printMenu() {
 
