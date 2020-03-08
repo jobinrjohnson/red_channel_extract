@@ -26,37 +26,12 @@ int Menu::choose() {
 
 }
 
-void Menu::performAction(int actionId) {
 
-
-    switch (actionId) {
-        case 3:
-            this->Action_Logout();
-            break;
-    }
+int Menu::displayAndSelect() {
+    this->printMenu();
+    int choice = this->choose();
+    return choice;
 
 }
 
-void Menu::chooseInfinitely() {
-
-    while (true) {
-        this->printMenu();
-        int choice = this->choose();
-        this->performAction(choice);
-    }
-
-}
-
-void Menu::Action_Logout() {
-    std::cout << std::endl << "Logged out." << std::endl;
-    exit(0);
-}
-
-void Menu::Action_CreateVideo() {
-
-}
-
-void Menu::Action_FileList() {
-
-}
 

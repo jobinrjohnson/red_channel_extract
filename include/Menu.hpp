@@ -20,19 +20,9 @@ private:
 
 public:
     void printMenu();
-
     int choose();
 
-    void performAction(int actionId);
-
-    void chooseInfinitely();
-
-protected:
-    void Action_Logout();
-
-    void Action_FileList();
-
-    void Action_CreateVideo();
+    int displayAndSelect();
 
 
 };

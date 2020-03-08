@@ -3,6 +3,7 @@
 
 #include "include/Auth.hpp"
 #include "include/Menu.hpp"
+#include "include/VideoProcessor.hpp"
 
 using namespace std;
 
@@ -17,8 +18,26 @@ int main() {
 //    }
 
     Menu menu;
-    menu.chooseInfinitely();
+    VideoProcessor videoProcessor;
+    videoProcessor.setDuration(10);
 
-    std::cout << "Hello, World!" << std::endl;
+    while (true) {
+        int actionId = menu.displayAndSelect();
+
+        switch (actionId) {
+            case 1:
+                videoProcessor.setCaptureDevice(VIDEO_SOURCE_DEFAULT);
+                videoProcessor.capture();
+                break;
+            case 2:
+                break;
+            case 3:
+                std::cout << std::endl << "Logged out." << std::endl;
+                exit(0);
+            default:
+                std::cout << std::endl << "Select an option." << std::endl;
+                break;
+        }
+    }
     return 0;
 }
