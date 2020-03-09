@@ -1,12 +1,27 @@
 #include <iostream>
 #include <opencv2/opencv.hpp>
-#include <filesystem>
+#include <dirent.h>
 
 #include "include/Auth.hpp"
 #include "include/Menu.hpp"
 #include "include/VideoProcessor.hpp"
 
 using namespace std;
+
+void listDir() {
+    DIR *dirp;
+    struct dirent *directory;
+
+    dirp = opendir("recorded/");
+    if (dirp) {
+        while ((directory = readdir(dirp)) != NULL) {
+            std::cout << directory->d_name << endl;
+        }
+
+        closedir(dirp);
+    }
+
+}
 
 int main() {
 
@@ -33,9 +48,7 @@ int main() {
                 cout << "\ncapture complete";
                 break;
             case 2:
-                cout << "\nAll recordings\n";
-                for (const auto &entry : std::filesystem::directory_iterator("recorded"))
-                    std::cout << "* " << entry.path().string() << std::endl;
+                listDir();
                 break;
             case 3:
                 std::cout << std::endl << "Logged out." << std::endl;

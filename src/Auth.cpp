@@ -10,6 +10,9 @@ bool Auth::auth() {
     std::string userName;
     std::string password;
 
+
+    std::cout << "Enter 'admin' as username and 'admin' as password \n";
+
     int i = 0;
 
     while (i++ < this->numberOfAttempts) {
@@ -20,7 +23,7 @@ bool Auth::auth() {
         std::cout << "Enter Your Password : ";
         std::cin >> password;
 
-        if (userName.compare("user") == 0 && password.compare("password") == 0) {
+        if (userName.compare("admin") == 0 && password.compare("admin") == 0) {
             return true;
         }
 
