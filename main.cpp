@@ -14,8 +14,16 @@ void listDir() {
 
     dirp = opendir("recorded/");
     if (dirp) {
+        cout << "\nAll Videos\n";
         while ((directory = readdir(dirp)) != NULL) {
-            std::cout << directory->d_name << endl;
+
+            std::string dir_name = directory->d_name;
+
+            if (dir_name.compare(".") == 0 || dir_name.compare("..") == 0) {
+                continue;
+            }
+
+            std::cout << dir_name << endl;
         }
 
         closedir(dirp);
